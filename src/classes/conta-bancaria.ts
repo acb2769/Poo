@@ -1,77 +1,55 @@
-export class ContaBancaria {
-    public numeroDaConta: string
-    public titular: string
-    private saldo: number = 0
-    private saldoCaixinha: number = 0
+export class Pessoa {
+    public id: string
+    public nome: string
+    protected email: string 
 
-    constructor(numeroDaConta: string, titular: string) {
-        this.numeroDaConta = numeroDaConta
-        this.titular = titular
+    constructor(id: string, Nome: string) {
+        this.id = id
+        this.nome = nome
+        this.email = string
     }
 
-    public depositar(target: "conta-bancaria" | "caixinha", valor: number) {
-        if (target === "conta-bancaria") {
-            if (valor <= 0) {
-                return console.log('Valor não permitido.')
-            }
+    export class Professor extends Pessoa{
+        public valorHora:number;
+        public calcHora: calcHora
 
-            this.saldo += valor
-            return;
+        constructor(id: string, nome: string, email: string, valorHora: number, calcHora: number ) {
+            super(id,nome,email);
+            this.valorHora = valorHora;
+            this.calcHora = calcHora;
+        }
+        public calcularAulas: number{
+            return this.valorHora * this.calcHora; 
         }
 
-        if (target === 'caixinha') {
-            if (valor > this.saldo || valor < 0) {
-                return console.log('Valor não permitido.')
+        export class Coordenador extends Professor{
+            public gratgestao: number;
+
+            constructor(id: string,nome: string, email:string, valorHora: number, calcHora: number, gratgestao:number) {
+                super(id, nome, email, valorHora, calcHora);
+                this.gratgestao = gratgestao;
             }
 
-            this.saldoCaixinha += this.saldo - valor
-            this.saldo -= valor
-            return;
-        }
+            public calcularRendimentoTotal:number{
 
-        return console.log("Target inexistente.")
+
+    // Calcula o valor das aulas usando o método herdado e soma a gratificação
+    public calcularRendimentoTotal: number {
+        const ganhoAulas = this.calcularAulas(quantidadeAulas);
+        return ganhoAulas + this.gratificacaoGestao;
     }
-
-    public sacar(target: "conta-bancaria" | "caixinha", valor: number) {
-        if (target === "conta-bancaria") {
-            if (valor <= 0) {
-                return console.log('Valor não permitido.')
+                
             }
-
-            if (valor > this.saldo) {
-                return console.log('Saldo insuficiente.')
-            }
-
-            this.saldo -= valor
-            return console.log(`Saque no valor de R$${valor},realizado com sucesso !`);
         }
-
-        if (target === 'caixinha') {
-            if (valor < 0) {
-                return console.log('Valor não permitido.')
-            }
-
-            if (valor > this.saldo) {
-                return console.log('Saldo insuficiente.')
-            }
-
-            this.saldoCaixinha -= valor
-            this.saldo += valor
-            return console.log(`Saque no valor de R$${valor},realizado com sucesso !`);
-        }
-
-        return console.log("Target inexistente.")
     }
+    export class AlunoBolsista extends Pessoa {
+        public horasPesquisa: number;
 
-    public verificarSaldo(target: "conta-bancaria" | "caixinha") {
-        if (target === 'conta-bancaria') {
-            return console.log(`Saldo atual: ${this.saldo}`)
+        constructor(id: string, nome:string, email:string, horasPesquisa: number) {
+            super(id, nome, email);
+            this.horasPesquisa = horasPesquisa;     
         }
-
-        if (target === 'caixinha') {
-            return console.log(`Saldo atual: ${this.saldoCaixinha}`)
-        }
-
-        return console.log('Target inexistente.')
     }
 }
+
+    
